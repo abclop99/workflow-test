@@ -12,6 +12,7 @@ jobs:
     - name: Get Timestamp
       uses: nanzm/get-time-action@v2.0
     - name: Create timestamp file
+      id: time
       env:
         TIME: ${{ steps.time.outputs.time }}
       run: |
