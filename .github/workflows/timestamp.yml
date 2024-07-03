@@ -10,9 +10,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
     - name: Get Timestamp
-      run: echo "time=Thing" >> "$GITHUB_OUTPUT"
-    - name: Create timestamp file
       id: time
+      run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
+    - name: Create timestamp file
       env:
         TIME: ${{ steps.time.outputs.time }}
         ALL: ${{ join(steps.time.outputs.*, '\n') }}
