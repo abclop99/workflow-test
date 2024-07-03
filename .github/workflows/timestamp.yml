@@ -15,10 +15,7 @@ jobs:
     - name: Create timestamp file
       env:
         TIME: ${{ steps.time.outputs.time }}
-        ALL: ${{ join(steps.time.outputs.*, '\n') }}
-      run: |
-        echo $ALL
-        echo $TIME > timestamp
+      run: echo $TIME > timestamp
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
       with:
