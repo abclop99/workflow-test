@@ -1,0 +1,28 @@
+name: timestamp
+
+on:
+  workflow_dispatch
+
+jobs:
+  thing:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Get Timestamp
+      uses: nanzm/get-time-action@v2.0
+    - name: Create timestamp file
+      env:
+        TIME: ${{ steps.time.outputs.time }}
+      run: |
+        echo $TIME > timestamp
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        commit-message: Update timestamp to ${{ steps.time.outputs.time }}
+        branch: actions/update-timestamp
+        title: Update timestamp
+        labels: |
+          github_actions
+          timestamp
+      
