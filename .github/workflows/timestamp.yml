@@ -10,7 +10,7 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
     - name: Get Timestamp
-      run: echo "time=$(date +%s)" >> "$GITHUB_OUTPUT"
+      run: echo "::set-output name=time::$(date +%s)"
     - name: Create timestamp file
       id: time
       env:
